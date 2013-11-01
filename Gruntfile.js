@@ -49,7 +49,12 @@ module.exports = function (grunt) {
 					base: 'target/<%= pkg.name %>',
 					port: 8000,
 					hostname: 'localhost',
-					keepalive: true
+					keepalive: true,
+					middleware: function (connect, options) {
+						return [
+							connect.static(options.base, { index: 'index.html' })
+						];
+					}
 				}
 			},
 
