@@ -1,3 +1,10 @@
+/**
+ * In this file we basically tell require.js about which libraries we want to use, how they are called and where they are.
+ * As we install these libraries through bower package manager, and we told bower to install packages to "lib" in .bowerrc,
+ * we set the paths for each library to the correct file here.
+ * Shim helps us to define dependencies between libraries and to configure our exports.
+ */
+
 require.config({
 
   deps: ["RootView"],
