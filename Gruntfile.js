@@ -89,12 +89,9 @@ module.exports = function (grunt) {
 		copy: {
 			dist: {
 				files: [
-					{ expand: true, src: 'fonts/**', dest: 'target/<%= pkg.name %>/' },
 					{ expand: true, src: 'images/**', dest: 'target/<%= pkg.name %>/' },
 					{ expand: true, src: 'favicon.ico', dest: 'target/<%= pkg.name %>/' },
-					{ expand: true, src: 'config.json', dest: 'target/<%= pkg.name %>/' },
 					{ expand: true, src: 'index.html', dest: 'target/<%= pkg.name %>/' },
-					{ expand: true, src: 'locales/**', dest: 'target/<%= pkg.name %>/' }
 				]
 			}
 		},
@@ -105,7 +102,7 @@ module.exports = function (grunt) {
 					name: '../../lib/almond/almond',
 					include: [ 'RootView' ],
 					insertRequire: [ 'RootView' ],
-					mainConfigFile: 'src/js/Configuration.js',
+					mainConfigFile: 'src/js/requirejs.config.js',
 					out: 'target/<%= pkg.name %>/app.js',
 					wrap: true,
 					findNestedDependencies: true,
