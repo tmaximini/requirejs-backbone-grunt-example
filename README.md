@@ -8,7 +8,8 @@ I like to use require.js sugar syntax (http://requirejs.org/docs/whyamd.html#sug
 
 ### Requirements
 
-you should have node.js and npm installed. you will also need ruby and compass installed to compile the sass.
+you should have `node.js` and `npm` installed. you will also need `ruby` and `compass` installed to compile the sass (`gem install compass`).
+when you have these make sure you have grunt installed globally (`npm install -g grunt-cli`).
 
 
 ### Usage
