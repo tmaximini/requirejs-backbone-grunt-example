@@ -1,0 +1,16 @@
+.DS_Store
+.rvmrc
+.ruby-version
+.sass-cache/*
+node_modules/*
+build/*
+logs/*
+target
+lib/*
+src/js/templates.js
+styles.css
+
+npm-debug.log
+
+/.idea/
+*.iml

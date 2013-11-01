@@ -1,0 +1,58 @@
+@charset "UTF-8";
+@import "modules/normalize";
+
+::selection {
+  background-color:transparent;
+  color:inherit;
+}
+
+* {
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+  outline:none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body, html {
+  position:absolute;
+  top:0px;
+  left:0px;
+  height:100%;
+  width:100%;
+  min-width:1024px;
+  overflow:hidden;
+  font-size: 0.90em;
+}
+
+
+div, p, ul, li, span, a, h1, h2, h3, h4, input {
+  padding:0;
+  margin:0;
+}
+
+h1, h2, h3 {
+  text-shadow:0 1px 0 rgba(255, 255, 255, 0.48);
+  color: rgb(58, 59, 66);
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 30px;
+  padding: 20px 0;
+}
+
+h3 {
+  font-size:22px;
+  padding:15px 0;
+}
+
+ul, ul li {
+  display:block;
+}
+
+a, a:hover, a:visited, a:active {
+  outline:none;
+}
+
