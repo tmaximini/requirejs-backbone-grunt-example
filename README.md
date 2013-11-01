@@ -6,7 +6,7 @@ I like to use "simplified CommonJS wrapping" from require.js sugar syntax (http:
 This allows us to require files like this
 ```javascript
 var MyFile = require('/path/to/my/file');
-`
+```
 
 
 
