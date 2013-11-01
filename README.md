@@ -2,7 +2,11 @@
 
 This is a boilerplate example how to set up a basic Backbone application.
 I think require.js helps a lot to write structured code, so here is my setup.
-I like to use require.js sugar syntax (http://requirejs.org/docs/whyamd.html#sugar)
+I like to use "simplified CommonJS wrapping" from require.js sugar syntax (http://requirejs.org/docs/whyamd.html#sugar)
+This allows us to require files like this
+```javascript
+var MyFile = require('/path/to/my/file');
+``
 
 
 
