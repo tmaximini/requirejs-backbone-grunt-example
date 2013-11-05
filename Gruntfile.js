@@ -1,16 +1,18 @@
 module.exports = function (grunt) {
 	grunt.initConfig({
 
-		pkg: grunt.file.readJSON('package.json'),
+		target: grunt.file.readJSON('package.json'),
 
-		clean: ['target'],
+		clean: ['dist'],
 
+		// jshint code first using rules defined in .jshintrc
 		jshint: {
 			jshintrc: '.jshintrc',
-			files: [ 'src/js/**/*.js' ],
 			all: [ 'src/js/**/*.js' ]
 		},
 
+
+		// compile handlebars templates and concatenate them into src/js/templates.js
 		handlebars: {
 			compile: {
 				options: {
@@ -27,11 +29,12 @@ module.exports = function (grunt) {
 			}
 		},
 
+		// compiles .scss
 		compass: {
 			dist: {
 				options: {
 					sassDir: "src/sass",
-					cssDir: "target/<%= pkg.name %>",
+					cssDir: "dist/<%= target.name %>",
 					environment: "production"
 				}
 			},
@@ -43,10 +46,12 @@ module.exports = function (grunt) {
 			}
 		},
 
+
+		// start local development server
 		connect: {
 			dist: {
 				options: {
-					base: 'target/<%= pkg.name %>',
+					base: 'dist/<%= target.name %>',
 					port: 8000,
 					hostname: 'localhost',
 					keepalive: true,
@@ -71,6 +76,8 @@ module.exports = function (grunt) {
 			}
 		},
 
+
+		// watch file changes
 		watch: {
 			options: {
 				livereload: true
@@ -91,16 +98,18 @@ module.exports = function (grunt) {
 			}
 		},
 
+		// copy files when using 'grunt dist'
 		copy: {
 			dist: {
 				files: [
-					{ expand: true, src: 'images/**', dest: 'target/<%= pkg.name %>/' },
-					{ expand: true, src: 'favicon.ico', dest: 'target/<%= pkg.name %>/' },
-					{ expand: true, src: 'index.html', dest: 'target/<%= pkg.name %>/' },
+					{ expand: true, src: 'images/**', dest: 'dist/<%= target.name %>/' },
+					{ expand: true, src: 'favicon.ico', dest: 'dist/<%= target.name %>/' },
+					{ expand: true, src: 'index.html', dest: 'dist/<%= target.name %>/' },
 				]
 			}
 		},
 
+		// require.js optimizer (using almond here instead of r.js)
 		requirejs: {
 			compile: {
 				options: {
@@ -108,11 +117,11 @@ module.exports = function (grunt) {
 					include: [ 'RootView' ],
 					insertRequire: [ 'RootView' ],
 					mainConfigFile: 'src/js/requirejs.config.js',
-					out: 'target/<%= pkg.name %>/app.js',
+					out: 'dist/<%= target.name %>/app.js',
 					wrap: true,
 					findNestedDependencies: true,
 					preserveLicenseComments: false,
-					optimize: 'uglify2' // uglify2
+					optimize: 'uglify2' // none
 				}
 			}
 		},
@@ -120,10 +129,10 @@ module.exports = function (grunt) {
 		compress: {
 			main: {
 				options: {
-					archive: 'target/<%= pkg.name %>.zip'
+					archive: 'dist/<%= target.name %>.zip'
 				},
 				files: [
-					{ expand: true, cwd: 'target/<%= pkg.name %>/', src: [ '**' ], dest: '.' }
+					{ expand: true, cwd: 'dist/<%= target.name %>/', src: [ '**' ], dest: '.' }
 				]
 			}
 		}
@@ -140,9 +149,9 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-compress');
 
 	grunt.registerTask('default', [ 'compass:dev', 'handlebars']);
-	grunt.registerTask('dev', [ 'compass:dev', 'handlebars', 'connect:dev', 'watch' ]);
+	grunt.registerTask('dev', [ 'jshint', 'compass:dev', 'handlebars', 'connect:dev', 'watch' ]);
 
 	grunt.registerTask('deploy',
-			[ 'clean', 'compass:dist', 'handlebars', 'requirejs', 'copy:dist', 'compress']);
+			[ 'clean', 'jshint', 'compass:dist', 'handlebars', 'requirejs', 'copy:dist', 'compress']);
 	grunt.registerTask('dist', [ 'deploy', 'connect:dist' ]);
 };

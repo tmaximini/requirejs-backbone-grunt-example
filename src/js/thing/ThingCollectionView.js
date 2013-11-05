@@ -34,4 +34,6 @@ define(function (require) {
 			});
 		}
 
+	});
+
 });

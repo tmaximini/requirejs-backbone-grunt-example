@@ -25,4 +25,5 @@ define(function (require) {
 			console.log('You clicked a thing');
 		}
 
+	});
 });
